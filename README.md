@@ -46,7 +46,6 @@ print("Circuits:", M.circuits())
 #Dual matroid:
 M_star = DualMatroid(M)
 
-print("Edges:", M.edges)
 print("Primal bases:", M.bases())
 print("Dual bases:", M_star.bases())
 print("Dual rank:", M_star.rank())
