@@ -84,7 +84,7 @@ class GraphicMatroid:
         return max_rank
 
     def bases(self):
-        """All spanning forests
+        """All spanning forests.
         """
         r = self.rank()
         return [
@@ -93,7 +93,7 @@ class GraphicMatroid:
         ]
 
     def circuits(self):
-        """Minimal cycles
+        """Minimal cycles.
         """
         circuits = []
         for r in range(1, len(self.edges) + 1):
@@ -124,7 +124,7 @@ class UnionFindNX:
     def union(self, x, y):
         rx, ry = self.find(x), self.find(y)
         if rx == ry:
-            return False  # cycle detected
+            return False  #cycle detected
         if self.rank[rx] < self.rank[ry]:
             self.parent[rx] = ry
         elif self.rank[rx] > self.rank[ry]:
@@ -146,7 +146,7 @@ class GraphicMatroidNX:
         self.G = G
         self.nodes = list(G.nodes)
 
-        # Preserve edge identity (important for MultiGraph)
+        #Preserve edge identity
         if isinstance(G, nx.MultiGraph):
             self.edges = list(G.edges(keys=True))
         else:
@@ -213,7 +213,6 @@ class GraphicMatroidNX:
         for r in range(1, len(self.edges) + 1):
             for subset in itertools.combinations(self.edges, r):
                 if not self.is_independent(subset):
-                    # minimal dependent?
                     minimal = True
                     for e in subset:
                         if not self.is_independent(set(subset) - {e}):
