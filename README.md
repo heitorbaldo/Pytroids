@@ -19,12 +19,10 @@ import networkx as nx
 from pytroids.graphic_matroids import *
 from pytroids.dual_matroids import *
 
-A = np.array([
-    [0, 1, 1, 0],
-    [1, 0, 1, 0],
-    [1, 1, 0, 1],
-    [0, 0, 1, 0]
-])
+n = 10
+p = 0.2
+G = nx.gnp_random_graph(n, p, seed=None, directed=False)
+A = nx.adjacency_matrix(G)
 
 #Input: NumPy adjacency matrix:
 M = GraphicMatroid(A)
@@ -35,7 +33,6 @@ print("Bases:", M.bases())
 print("Circuits:", M.circuits())
 
 #Input: NetworkX graph:
-G = nx.from_numpy_array(A)
 M = GraphicMatroidNX(G)
 
 print("Edges:", M.edges)
